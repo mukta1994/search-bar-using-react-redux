@@ -18,9 +18,10 @@ const SearchResults = (props: any) => {
   return (<div className="search-results">
     {props.Reducer.results ? (
       props.Reducer.results.map((organization: CauseDataType, i: number) => (
-        <Card key={i} className="organization">
+        <a href={organization.website} target="/blank" key={i}>
+        <Card  className="organization">
           {(organization.publishedAt !== null && organization.hasPassedPreliminary &&
-                <Images image={ organization.images.data[0].files.data[0]} logoimage={ organization.logo.data.files.data[0] }/>
+                  <Images image={ organization.images.data[0].files.data[0]} logoimage={ organization.logo.data.files.data[0] }/>
           )}
           <OrganizationInfo data={organization}/>
 
@@ -31,6 +32,7 @@ const SearchResults = (props: any) => {
 
           <Linearbar stage={!organization.hasPassedPreliminary ? 33.33 : (organization.publishedAt !== null ? 100 : 66)} />
         </Card>
+        </a>
       ))
     ) : null}
 

@@ -46,7 +46,7 @@ const OrganizationInfo = (props: organizationInfo) => {
               <p className={classes.tagline}>{data.tagline}</p>
               <p className={classes.categories}>
                 {data.categories && data.categories.data.map((category: CauseCategoryType, i: number) => (
-                  <span>
+                  <span key={i}>
                     {bull} {category.name}
                   </span>
                 ))}
