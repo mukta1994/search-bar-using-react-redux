@@ -1,11 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
 
 //components
 import SearchBar from './components/SearchBar'
-import SearchResults from './components/SearchResults'
+import SearchResults from './components/searchresults/SearchResults'
 
 //api
 import { getSearchResults } from './api/services';
@@ -20,10 +19,7 @@ import { CauseDataType } from './types'
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 
-
-
 function App(props:any) {
-
 
   //start search when enter is clicked
   const onKeyUp=(e:any)=> {
@@ -61,15 +57,6 @@ function App(props:any) {
                     onKeyPress={onKeyUp}
                     val={props.Reducer.query}/>
 
-        {/* {props.Reducer.results ? (
-          <ul>
-            {props.Reducer.results.map((item:CauseDataType, i:number) => (
-              <li key={i}>
-                <strong>{item.name}</strong> 
-              </li>
-            ))}
-          </ul>
-        ) : null} */}
         <SearchResults></SearchResults>
 
         {props.Reducer.isLoading ?<CircularProgress /> : null}

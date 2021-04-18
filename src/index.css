@@ -63,3 +63,7 @@ code {
   
 }
 
+.org {
+  position: relative;
+  border:none;
+}
