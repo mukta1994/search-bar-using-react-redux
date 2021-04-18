@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 //components
 import SearchBar from './components/SearchBar'
+import SearchResults from './components/SearchResults'
 
 //api
 import { getSearchResults } from './api/services';
@@ -23,17 +24,20 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 function App(props:any) {
 
+
+  //start search when enter is clicked
   const onKeyUp=(e:any)=> {
     if (e.charCode === 13) {
-      handleLoadUsersClick();
+      handleInputChange();
     }
   }
 
-  const handleLoadUsersClick = async() => {
+  const handleInputChange = async() => {
     if(props.Reducer.query!==''){
       props.onLoadResultsClick();
 
       const searchResults= await getSearchResults(props.Reducer.query,props.Reducer.counter);
+      console.log(searchResults)
       props.onLoadSearchResultsOnComplete(searchResults) 
     }
    
@@ -51,13 +55,13 @@ function App(props:any) {
 
   return (
     <div className="App">
-         <SearchBar callback={()=>handleLoadUsersClick()} 
+         <SearchBar callback={()=>handleInputChange()} 
                     onInput={(e:any) => handleInput(e)}
                     clearSearchInput={() => clearInput()}
                     onKeyPress={onKeyUp}
                     val={props.Reducer.query}/>
 
-        {props.Reducer.results ? (
+        {/* {props.Reducer.results ? (
           <ul>
             {props.Reducer.results.map((item:CauseDataType, i:number) => (
               <li key={i}>
@@ -65,7 +69,8 @@ function App(props:any) {
               </li>
             ))}
           </ul>
-        ) : null}
+        ) : null} */}
+        <SearchResults></SearchResults>
 
         {props.Reducer.isLoading ?<CircularProgress /> : null}
     </div>

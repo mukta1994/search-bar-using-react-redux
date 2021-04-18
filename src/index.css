@@ -53,3 +53,13 @@ code {
   margin:0 0.5rem;
   pointer-events: visible;
 }
+
+.search-results {
+  width: 70%;
+  margin: 1rem auto;
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  grid-gap: 1rem;
+  
+}
+

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import ClearIcon from '@material-ui/icons/Clear';
-import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 
 
