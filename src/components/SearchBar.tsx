@@ -17,7 +17,6 @@ const SearchBar = (props:any) => {
                     <ClearIcon className="close-icon" onClick={clearSearchInput}/>
                     <div className="divider"></div>
                     <SearchIcon className="search-icon" onClick={callback}/> 
-
                 </div>  
             </div>
         </div>)

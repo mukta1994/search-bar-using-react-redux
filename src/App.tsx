@@ -15,6 +15,10 @@ import {getResults, getResultsSuccess, incCounter, searchInput } from './actions
 //types
 import { CauseDataType } from './types'
 
+//material ui
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+
 
 
 function App(props:any) {
@@ -63,7 +67,7 @@ function App(props:any) {
           </ul>
         ) : null}
 
-        {props.Reducer.isLoading ? <p>loading...</p> : null}
+        {props.Reducer.isLoading ?<CircularProgress /> : null}
     </div>
   );
 }
