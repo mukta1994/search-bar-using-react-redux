@@ -1,11 +1,17 @@
-import { GET_RESULTS, GET_RESULTS_SUCCESS, INC_COUNTER, SEARCH_INP } from "../actions/actions";
+import { GET_RESULTS, GET_RESULTS_SUCCESS, SEARCH_INP, PAGINATION } from "../actions/actions";
 
 
 const initialState = {
     results: [],
     isLoading: false,
     counter: 1,
-    query:""
+    query:"",
+    loadMore:false,
+    pagination:{
+      currentPage:0,
+      totalPages:0,
+      total:0
+    }
   };
 
   const reducers = (state =initialState, action:any) => {
@@ -16,17 +22,23 @@ const initialState = {
           isLoading: true
         };
       case GET_RESULTS_SUCCESS:
+        if(action.loadMore)
+          return {
+            ...state,
+          isLoading: false,
+          results:(state.results ? state.results:[]).concat(action.results)
+          } 
+        else
         return {
             ...state,
             isLoading: false,
             results:action.results
         }
-      case INC_COUNTER:
+      case PAGINATION:
         return {
             ...state,
-            counter: action.payload + 1
+            pagination: action.paginationData
         }
-
         case SEARCH_INP:
             return {
                 ...state,

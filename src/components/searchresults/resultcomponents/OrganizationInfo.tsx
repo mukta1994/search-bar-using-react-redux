@@ -34,11 +34,12 @@ const useStyles = makeStyles({
       color: 'gray'
     }
   }); 
+
 const OrganizationInfo = (props: organizationInfo) => {
+
     const classes = useStyles();
-   const {data}=props;
+    const {data}=props;
     const bull = <span className={classes.bullet}>•</span>;
-  
   
     return (<div className={classes.organizationInfo}>
               <h4 className={classes.organizationHeading}>organizaion</h4>

@@ -5,15 +5,16 @@ import { connect } from 'react-redux';
 //components
 import SearchBar from './components/SearchBar'
 import SearchResults from './components/searchresults/SearchResults'
+import LoadButton from './components/searchresults/resultcomponents/LoadButton'
 
 //api
 import { getSearchResults } from './api/services';
 
 //actions
-import {getResults, getResultsSuccess, incCounter, searchInput } from './actions/actions';
+import {getResults, getResultsSuccess, searchInput, paginationData } from './actions/actions';
 
 //types
-import { CauseDataType } from './types'
+import { CauseDataType, SearchResponsePaginationDataType  } from './types'
 
 //material ui
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -21,37 +22,55 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 function App(props:any) {
 
+  const { query, isLoading,pagination}=props.Reducer
+  
   //start search when enter is clicked
   const onKeyUp=(e:any)=> {
     if (e.charCode === 13) {
-      handleInputChange();
+      getAllSearchResults(false);
     }
   }
 
-  const handleInputChange = async() => {
-    if(props.Reducer.query!==''){
-      props.onLoadResultsClick();
 
-      const searchResults= await getSearchResults(props.Reducer.query,props.Reducer.counter);
-      console.log(searchResults)
-      props.onLoadSearchResultsOnComplete(searchResults) 
+  //get all search results if it is load more then pagenumber will be incremented by one otherwise always first page is rendered
+  const getAllSearchResults = async(loadMore:boolean) => {
+    if(query!==''){
+      props.onLoadResultsClick();
+      if(loadMore){
+      getDataDependingonPage(loadMore,pagination.currentPage+1);
+      }
+      else{
+        getDataDependingonPage(loadMore,1);
+
+      }
     }
-   
   };
+
+
+  const getDataDependingonPage=async(loadMore:boolean,pageNum:any)=>{
+
+      const searchResults= await getSearchResults(query,pageNum);
+      props.onLoadSearchResultsOnComplete(searchResults.data,loadMore);
+      props.getPagination(searchResults.meta.pagination);
+  }
+
 
   const handleInput=(e:any)=>{
     props.onChangeInput(e.target.value)
   }
 
+  //when clear button is clicked make reset
   const clearInput=()=>{
     props.onChangeInput('');
     props.onLoadSearchResultsOnComplete([]) 
+    pagination.currentPage=0;
+    pagination.total=0;
   }
 
 
   return (
     <div className="App">
-         <SearchBar callback={()=>handleInputChange()} 
+         <SearchBar callback={()=>getAllSearchResults(false)} 
                     onInput={(e:any) => handleInput(e)}
                     clearSearchInput={() => clearInput()}
                     onKeyPress={onKeyUp}
@@ -59,7 +78,11 @@ function App(props:any) {
 
         <SearchResults></SearchResults>
 
-        {props.Reducer.isLoading ?<CircularProgress /> : null}
+        {isLoading ?<CircularProgress /> : null}
+
+        <LoadButton callback={()=>getAllSearchResults(true)}
+                    paginationData={pagination} />
+       
     </div>
   );
 }
@@ -68,19 +91,22 @@ const mapStateToProps = (state:any) => ({
   ...state
 });
 
-// { actions: bindActionCreators(eventPassed, dispatch) }
 
 const mapDispatchToProps = (dispatch:any) => {
   return {
     onLoadResultsClick: () => {
       dispatch(getResults());
     },
-    onLoadSearchResultsOnComplete: (results:CauseDataType) => {
-      dispatch(getResultsSuccess(results));
+    onLoadSearchResultsOnComplete: (results:CauseDataType,loadMore:boolean) => {
+      dispatch(getResultsSuccess(results, loadMore)); 
     },
     onChangeInput:(query:any)=>{
       dispatch(searchInput(query));
+    },
+    getPagination:(pagination:SearchResponsePaginationDataType)=>{
+      dispatch(paginationData(pagination))
     }
+
   };
 };
 

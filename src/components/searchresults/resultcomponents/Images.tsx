@@ -3,7 +3,6 @@ import React from 'react';
 //material ui
 import { makeStyles } from '@material-ui/core/styles';
 
-
 //types
 import { ImageFileType } from '../../../types'
 
@@ -36,6 +35,7 @@ const useStyles = makeStyles({
 
 });
 
+//image interface
 export interface Image {
     image : ImageFileType,
     logoimage: ImageFileType

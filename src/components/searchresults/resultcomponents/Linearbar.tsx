@@ -29,7 +29,7 @@ const useStyles = makeStyles({
 
 });
 
-
+//progress bar to show status of organization
 const Linearbar= (props:any) => {
 
 const classes = useStyles();

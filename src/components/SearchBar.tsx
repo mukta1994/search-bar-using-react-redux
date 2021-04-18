@@ -1,5 +1,6 @@
 import React from 'react';
 
+//material ui
 import ClearIcon from '@material-ui/icons/Clear';
 import SearchIcon from '@material-ui/icons/Search';
 
@@ -19,8 +20,6 @@ const SearchBar = (props:any) => {
                 </div>  
             </div>
         </div>)
-   
 }
-
 
 export default SearchBar;

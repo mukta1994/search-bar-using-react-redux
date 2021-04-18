@@ -4,7 +4,7 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import AutorenewIcon from '@material-ui/icons/Autorenew';
 
-
+//card which does not come under stage 3
 const NotMember = () => {
 
     return ( <Card className="not-member" >

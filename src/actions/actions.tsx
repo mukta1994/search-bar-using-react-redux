@@ -1,9 +1,9 @@
-import { CauseDataType } from '../types'
+import { CauseDataType , SearchResponsePaginationDataType } from '../types'
 
 export const GET_RESULTS = "GET_USERS";
 export const GET_RESULTS_SUCCESS = "GET_USERS_SUCCESS";
-export const INC_COUNTER = "INC_COUNTER";
 export const SEARCH_INP = "SEARCH_INP";
+export const PAGINATION = "PAGINATION";
 
 
 export const getResults = () => {
@@ -12,15 +12,19 @@ export const getResults = () => {
   };
 };
 
-export const incCounter = (payload:number) => ({
-    type:INC_COUNTER,
-    payload
-  });
-
-export const getResultsSuccess = (results:CauseDataType) => {
+export const getResultsSuccess = (results:CauseDataType,loadMore:boolean) => {
   return {
     type: GET_RESULTS_SUCCESS,
-    results
+    results,
+    loadMore
+  };
+};
+
+export const paginationData = (paginationData:SearchResponsePaginationDataType) => {
+  return {
+    type: PAGINATION,
+    paginationData
+    
   };
 };
 
