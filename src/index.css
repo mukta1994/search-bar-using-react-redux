@@ -60,10 +60,30 @@ code {
   display: grid;
   grid-template-columns: 30% 30% 30%;
   grid-gap: 1rem;
-  
 }
 
-.org {
+.organization {
   position: relative;
   border:none;
+  min-height:300px;
+}
+
+.not-member{
+  text-align: left;
+  margin:1rem;
+  padding: 1rem;
+  font-size: 14px;
+   background-color:#c7c6c6 !important;
+   min-height: 100px;
+   position: absolute;
+   bottom: 0px;
+   right: 0;
+   left: 0;
+}
+.meta {
+  display: flex;
+}
+
+.meta span {
+  margin:auto 0;
 }
