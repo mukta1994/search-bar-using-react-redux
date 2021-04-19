@@ -22,7 +22,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 function App(props:any) {
 
-  const { query, isLoading,pagination}=props.Reducer
+  const {query, isLoading,pagination}=props.Reducer
   
   //start search when enter is clicked
   const onKeyUp=(e:any)=> {
@@ -41,7 +41,6 @@ function App(props:any) {
       }
       else{
         getDataDependingonPage(loadMore,1);
-
       }
     }
   };
@@ -84,6 +83,7 @@ function App(props:any) {
                     paginationData={pagination} />
        
     </div>
+
   );
 }
 
