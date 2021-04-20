@@ -2,6 +2,40 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+#Architecture
+
+This project is created using react 17 with central data management(redux).
+
+Project structure of main components
+
+App.tsx->
+  
+    SearcBar
+    
+    SearchResults(logic to render search results )
+    
+        SearchItem(single card with organization info
+          
+           Images(contains images of organization)
+           
+           LineBar(Pink line at the bottom to show status of organization)
+           
+           OrganizationInfo(Meta data of organization like tagline, categories etc)
+           
+           NotMember(Which shows the membership is pending info)
+           
+           LoadButton(logic where load more button shows depending on results)
+           
+   Reducers folder contains some reducer functionalities
+    
+   actions are created in actions folder.
+   
+   api folder which contains a service.tsx to call rest api( async await is called using fetch)
+
+
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
