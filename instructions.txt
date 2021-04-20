@@ -35,6 +35,7 @@ SearchResults(logic to render search results )
        NotMember(Which shows the membership is pending info)
        
        LoadButton(logic where load more button shows depending on results)
+       
 Reducers folder contains some reducer functionalities
 
 actions are created in actions folder.
