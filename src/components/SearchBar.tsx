@@ -12,11 +12,11 @@ const SearchBar = (props:any) => {
     return(<div className="search-bar">
         <h3>Search effective charitable organizations</h3>
               <div className="search_container">
-                <input type="text" className="search-input" onInput={onInput} value={val} onKeyPress={onKeyPress}/>
+                <input type="text" className="search-input" onInput={onInput} value={val} onKeyPress={onKeyPress} placeholder="Search"/>
                     <div className="actions">
                     <ClearIcon className="close-icon" onClick={clearSearchInput}/>
                     <div className="divider"></div>
-                    <SearchIcon className="search-icon" onClick={callback}/> 
+                    <SearchIcon className="search-icon" onClick={callback} data-testid="search-icon"/> 
                 </div>  
             </div>
         </div>)

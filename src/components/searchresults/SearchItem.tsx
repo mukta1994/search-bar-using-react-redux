@@ -25,8 +25,8 @@ const SearchItem:React.FC<OrganizationType> = (props: OrganizationType) => {
     return ( <a target="/blank" href={organizationData.website}>
             <Card  className="organization">
       
-            {(organizationData.publishedAt !== null && organizationData.hasPassedPreliminary &&
-                 <Images image={ organizationData.images.data[0].files.data[0]} logoimage={ organizationData.logo.data.files.data[0] }/>
+            {(organizationData.publishedAt !== null && organizationData.hasPassedPreliminary && 
+                 <Images image={ organizationData.images.data[0].files.data[0]} logoimage={organizationData.logo ? organizationData.logo.data.files.data[0]:null as any }/>
             )}
 
              <OrganizationInfo data={organizationData}/>

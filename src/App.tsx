@@ -33,8 +33,10 @@ function App(props:any) {
 
 
   //get all search results if it is load more then pagenumber will be incremented by one otherwise always first page is rendered
-  const getAllSearchResults = async(loadMore:boolean) => {
+  const getAllSearchResults = (loadMore:boolean) => {
+    
     if(query!==''){
+      test();
       props.onLoadResultsClick();
       if(loadMore){
       getDataDependingonPage(loadMore,pagination.currentPage+1);
@@ -44,6 +46,10 @@ function App(props:any) {
       }
     }
   };
+
+  const test =()=>{
+    console.log("test")
+  }
 
 
   const getDataDependingonPage=async(loadMore:boolean,pageNum:any)=>{

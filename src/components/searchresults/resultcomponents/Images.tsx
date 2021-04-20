@@ -49,10 +49,11 @@ const Images:React.FC<Image> = (props: Image) => {
   return (
       <div className={classes.images}>
             <img src={image.url} alt="img" className={classes.orgImage}></img>
-            <div className={classes.overlay} ><img src={logoimage.url} style={{ width: "100%" }} alt="logo"/></div>
+            <div className={classes.overlay} >
+              { (logoimage!==null &&  <img src={logoimage.url} style={{ width: "100%" }} alt="logo"/>)}
+             </div>
           </div>
   )
-
 }
 
 
