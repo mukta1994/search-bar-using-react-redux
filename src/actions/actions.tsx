@@ -1,7 +1,7 @@
 import { CauseDataType , SearchResponsePaginationDataType } from '../types'
 
-export const GET_RESULTS = "GET_USERS";
-export const GET_RESULTS_SUCCESS = "GET_USERS_SUCCESS";
+export const GET_RESULTS = "GET_RESULTS";
+export const GET_RESULTS_SUCCESS = "GET_RESULTS_SUCCESS";
 export const SEARCH_INP = "SEARCH_INP";
 export const PAGINATION = "PAGINATION";
 
